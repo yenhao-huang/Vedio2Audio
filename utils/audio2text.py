@@ -8,7 +8,8 @@ class AutomaticSpeechRecognition:
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self.dtype = torch.float16
 
-        self.model_id = "openai/whisper-large-v3"
+        #self.model_id = "openai/whisper-large-v3"
+        self.model_id = "/workspace/models/whisper-large-v3/"
 
         self.model = AutoModelForSpeechSeq2Seq.from_pretrained(
             self.model_id, dtype=self.dtype, low_cpu_mem_usage=True, use_safetensors=True
