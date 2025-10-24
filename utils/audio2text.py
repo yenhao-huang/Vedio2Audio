@@ -38,7 +38,7 @@ class AutomaticSpeechRecognition:
 
 def main():
     argparser = argparse.ArgumentParser(description="Audio to Text Transcription")
-    argparser.add_argument("--audio_file", type=str, required=True, help="Path to \
+    argparser.add_argument("--audio_file", type=str, default="data/1000.mp3", help="Path to \
         the audio file to transcribe")
     argparser.add_argument("--output_dir", type=str, default="results", help="Directory to \
         save the transcription results in JSON format")
