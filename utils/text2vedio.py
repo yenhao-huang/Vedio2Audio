@@ -1,7 +1,7 @@
 import argparse
 import torch
 import numpy as np
-from diffusers import AutoModel, WanPipeline
+from diffusers import AutoModel, WanPipeline, DiffusionPipeline
 from diffusers.quantizers import PipelineQuantizationConfig
 from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
@@ -16,10 +16,13 @@ class Text2Vedio:
     Text2Vedio class for generating videos from text prompts using the WanPipeline.
     """
 
-    def __init__(self):
+    def __init__(self, quantized=False):
         """
-        Initialize the Text2Vedio pipeline by loading model components,
-        setting device (GPU if available, else CPU), and data types.
+        Initialize the Text2Vedio pipeline.
+        
+        Args:
+            quantized: If False (default), use 4-bit quantization.
+                    If True, load full precision models (more memory).
         """
         # Setup logger - save logs to logs directory
         log_dir = 'logs'
@@ -63,34 +66,57 @@ class Text2Vedio:
             self.logger.info("Using CPU device")
             print("⚠️ Using CPU (GPU not detected)")
 
-        # Load model components
-        print("📦 Loading text encoder...")
-        self.text_encoder = UMT5EncoderModel.from_pretrained(
-            self.model_name, subfolder="text_encoder", torch_dtype=torch.bfloat16
-        ).to(self.device)
-        self._log_memory_usage("After loading text encoder")
+        if not quantized:
+            # Load model components
+            print("📦 Loading text encoder...")
+            self.text_encoder = UMT5EncoderModel.from_pretrained(
+                self.model_name, subfolder="text_encoder", torch_dtype=torch.bfloat16
+            ).to(self.device)
+            self._log_memory_usage("After loading text encoder")
 
-        print("📦 Loading VAE...")
-        self.vae = AutoModel.from_pretrained(
-            self.model_name, subfolder="vae", torch_dtype=torch.float32
-        ).to(self.device)
-        self._log_memory_usage("After loading VAE")
+            print("📦 Loading VAE...")
+            self.vae = AutoModel.from_pretrained(
+                self.model_name, subfolder="vae", torch_dtype=torch.float32
+            ).to(self.device)
+            self._log_memory_usage("After loading VAE")
 
-        print("📦 Loading transformer...")
-        self.transformer = AutoModel.from_pretrained(
-            self.model_name, subfolder="transformer", torch_dtype=torch.bfloat16
-        ).to(self.device)
-        self._log_memory_usage("After loading transformer")
+            print("📦 Loading transformer...")
+            self.transformer = AutoModel.from_pretrained(
+                self.model_name, subfolder="transformer", torch_dtype=torch.bfloat16
+            ).to(self.device)
+            self._log_memory_usage("After loading transformer")
 
-        print("⚙️ Initializing pipeline...")
-        self.pipe = WanPipeline.from_pretrained(
-            self.model_name,
-            vae=self.vae,
-            transformer=self.transformer,
-            text_encoder=self.text_encoder,
-            torch_dtype=self.dtype,
-        ).to(self.device)
-        self._log_memory_usage("After initializing pipeline")
+            print("⚙️ Initializing pipeline...")
+
+            self.pipe = WanPipeline.from_pretrained(
+                self.model_name,
+                vae=self.vae,
+                transformer=self.transformer,
+                text_encoder=self.text_encoder,
+                torch_dtype=self.dtype,
+            ).to(self.device)
+
+
+            self._log_memory_usage("After initializing pipeline")
+        else:
+            # 使用 4-bit 量化（節省記憶體）
+            print("🔧 Using 4-bit quantization for memory optimization...")
+
+            pipeline_quant_config = PipelineQuantizationConfig(
+                quant_backend="bitsandbytes_4bit",
+                quant_kwargs={
+                    "load_in_4bit": True,
+                    "bnb_4bit_quant_type": "nf4",
+                    "bnb_4bit_compute_dtype": torch.bfloat16,
+                },
+                components_to_quantize=["transformer", "text_encoder"],
+            )
+
+            self.pipe = DiffusionPipeline.from_pretrained(
+                self.model_name,
+                torch_dtype=self.dtype,
+                pipeline_quantization_config=pipeline_quant_config,
+            ).to(self.device)
 
         # Set default video generation parameters
         self.fps = 16  # Frames per second
@@ -246,12 +272,18 @@ class Text2Vedio:
         unrealistic, unnatural lighting, deformed body, long neck, blurry eyes
         """
 
-        output = self.pipe(
-            prompt=text,
-            negative_prompt=negative_prompt,
-            num_frames=num_frames,
-            guidance_scale=5.0,
-        ).frames
+        with torch.no_grad():
+            output = self.pipe(
+                prompt=text,
+                negative_prompt=negative_prompt,
+                num_frames=num_frames,
+                guidance_scale=5.0,
+            ).frames
+        
+        # Clear CUDA cache
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            self.logger.info("CUDA cache cleared after inference")
 
         # Record inference time
         inference_time = time.time() - inference_start_time
@@ -334,25 +366,25 @@ class Text2Vedio:
         return self.text
 
 def main():
-    """
-    Main function to parse CLI arguments, run text-to-video generation,
-    and save the output video.
-    """
     argparser = argparse.ArgumentParser(description="Text to Video Generation")
     argparser.add_argument("--text_file", type=str, default="results/1000_transcription.json",
                           help="Input text prompt for video generation")
     argparser.add_argument("--output_dir", type=str, default="results",
                           help="Directory to save the generated video file")
-    argparser.add_argument("--duration", type=float, default=3,
-                          help="Video duration in seconds (default: 3.0)")
+    argparser.add_argument("--duration", type=float, default=1,
+                          help="Video duration in seconds (default: 1.0)")
     argparser.add_argument("--fps", type=int, default=16,
                           help="Frames per second (default: 16)")
+    argparser.add_argument("--quantize", action="store_true",
+                          help="Use 4-bit quantization to reduce memory usage")
     args = argparser.parse_args()
 
     print("🔧 Starting text-to-video generation process...")
     print(f"   📋 Parameters: Duration={args.duration}s, FPS={args.fps}")
+    if args.quantize:
+        print(f"   🔧 Quantization: ENABLED (4-bit)")
 
-    t2v = Text2Vedio()
+    t2v = Text2Vedio(quantized=args.quantize)
     text = t2v.read_text(args.text_file)
 
     # Generate video with specified duration and fps
