@@ -1,0 +1,13 @@
+2025-10-31 10:02:49,243 - INFO - Using GPU device 0: NVIDIA A40
+2025-10-31 10:02:49,243 - INFO - GPU Total Memory: 44.42 GB
+2025-10-31 10:02:49,243 - INFO - GPU Memory Allocated: 0.00 MB
+2025-10-31 10:02:49,244 - INFO - GPU Memory Reserved: 0.00 MB
+2025-10-31 10:06:09,181 - INFO - [After loading text encoder] GPU Memory - Allocated: 10.58 GB, Reserved: 10.58 GB, Free: 33.84 GB
+2025-10-31 10:06:13,655 - INFO - [After loading VAE] GPU Memory - Allocated: 11.08 GB, Reserved: 11.08 GB, Free: 33.35 GB
+2025-10-31 10:14:48,725 - INFO - [After loading transformer] GPU Memory - Allocated: 37.82 GB, Reserved: 37.84 GB, Free: 6.60 GB
+2025-10-31 10:14:52,257 - INFO - [After initializing pipeline] GPU Memory - Allocated: 37.82 GB, Reserved: 37.84 GB, Free: 6.60 GB
+2025-10-31 10:14:52,257 - INFO - Model initialization completed in 723.19 seconds
+2025-10-31 10:14:52,259 - INFO - Starting video generation for prompt: 韩兄,你难道击杀了那头薛灵?荆族女子深吸了一口气,缓缓问道,归星男子也目光阴沉望着韩丽,有些惊疑不定。怎么,在下击杀这东西,让二位倒有这么难以置信吗?当然不是,只是韩兄神通未免太大,这么快就击杀此物,...
+2025-10-31 10:14:52,259 - INFO - Video parameters - Duration: 1.0s, FPS: 16, Frames: 16
+2025-10-31 10:14:52,260 - INFO - [Before inference] GPU Memory - Allocated: 37.82 GB, Reserved: 37.84 GB, Free: 6.60 GB
+2025-10-31 10:14:52,274 - WARNING - pynvml not available, GPU utilization monitoring disabled
