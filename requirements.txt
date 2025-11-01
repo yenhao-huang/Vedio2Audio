@@ -1,0 +1,22 @@
+# Core Dependencies
+torch>=2.0.0
+transformers>=4.30.0
+diffusers>=0.21.0
+numpy>=1.24.0
+
+# Streamlit and UI Components
+streamlit>=1.32.0
+audio-recorder-streamlit>=0.0.8
+plotly>=5.14.0
+streamlit-lottie>=0.0.5
+
+# System Monitoring
+psutil>=5.9.0
+nvidia-ml-py>=12.535.133
+
+# Model Optimization (Optional)
+bitsandbytes>=0.41.0
+
+# Utilities
+pyyaml>=6.0
+pillow>=10.0.0

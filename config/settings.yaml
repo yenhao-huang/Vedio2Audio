@@ -1,0 +1,54 @@
+# Streamlit Audio2Video Configuration
+
+# Audio Settings
+audio:
+  max_duration: 300  # Maximum audio duration in seconds (5 minutes)
+  sample_rate: 16000
+  supported_formats:
+    - mp3
+    - wav
+    - m4a
+    - flac
+
+# Transcription Settings
+transcription:
+  model_name: "openai/whisper-large-v3"
+  device: "auto"  # auto, cuda, cpu
+  return_timestamps: true
+  language: null  # null for auto-detection
+
+# Video Generation Settings
+video:
+  # Model selection: "wan_2_1" or "wan_2_2"
+  # wan_2_1: Wan2.1-T2V-1.3B-Diffusers (stable, supports quantization)
+  # wan_2_2: Wan2.2-TI2V-5B-Diffusers (newer, larger model, experimental)
+  model_key: "wan_2_1"
+  default_duration: 3.0  # seconds
+  default_fps: 16
+  min_duration: 1.0
+  max_duration: 10.0
+  min_fps: 8
+  max_fps: 30
+  quantization: false  # Enable 4-bit quantization (only supported for wan_2_1)
+  guidance_scale: 5.0
+  negative_prompt: "worst quality, inconsistent motion, blurry, jittery, distorted"
+
+# Performance Settings
+performance:
+  cache_models: true
+  clear_cuda_cache: true
+  log_metrics: true
+  show_progress: true
+
+# File Management
+files:
+  temp_dir: "/tmp/audio2vedio"
+  output_dir: "results"
+  max_history: 10  # Keep last N generations
+
+# UI Settings
+ui:
+  page_title: "Audio2Video Generator"
+  page_icon: "🎬"
+  theme: "light"
+  sidebar_state: "expanded"

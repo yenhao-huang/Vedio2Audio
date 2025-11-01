@@ -1,7 +1,7 @@
 import argparse
 import torch
 import numpy as np
-from diffusers import AutoModel, WanPipeline, DiffusionPipeline
+from diffusers import AutoModel, WanPipeline, DiffusionPipeline, AutoencoderKLWan
 from diffusers.quantizers import PipelineQuantizationConfig
 from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
@@ -16,7 +16,7 @@ class Text2Vedio:
     Text2Vedio class for generating videos from text prompts using the WanPipeline.
     """
 
-    def __init__(self, quantized=False):
+    def __init__(self, quantized=False, model_name="wan_2_1"):
         """
         Initialize the Text2Vedio pipeline.
         
@@ -46,56 +46,59 @@ class Text2Vedio:
 
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self.dtype = torch.bfloat16
-        self.model_name = "Wan-AI/Wan2.1-T2V-14B-Diffusers"
 
-        # Log and print device info
-        if torch.cuda.is_available():
-            device_id = torch.cuda.current_device()
-            device_name = torch.cuda.get_device_name(device_id)
-            total_memory = torch.cuda.get_device_properties(device_id).total_memory / (1024 ** 3)
-            memory_allocated = torch.cuda.memory_allocated(device_id) / (1024 ** 2)
-            memory_reserved = torch.cuda.memory_reserved(device_id) / (1024 ** 2)
-            self.logger.info(f"Using GPU device {device_id}: {device_name}")
-            self.logger.info(f"GPU Total Memory: {total_memory:.2f} GB")
-            self.logger.info(f"GPU Memory Allocated: {memory_allocated:.2f} MB")
-            self.logger.info(f"GPU Memory Reserved: {memory_reserved:.2f} MB")
-            print(f"✅ Using GPU: {device_name}")
-            print(f"   Total Memory: {total_memory:.2f} GB")
-            print(f"   Memory allocated: {memory_allocated:.2f} MB, reserved: {memory_reserved:.2f} MB")
-        else:
-            self.logger.info("Using CPU device")
-            print("⚠️ Using CPU (GPU not detected)")
+        # Validate model_name and set default
+        if model_name not in ["wan_2_1", "wan_2_2"]:
+            print(f"⚠️ Invalid model_name '{model_name}', defaulting to 'wan_2_1'")
+            model_name = "wan_2_1"
 
+        # Load the appropriate pipeline based on model selection
+        if model_name == "wan_2_1":
+            self.model_name = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
+            self.pipe = self._load_wan2_1_pipeline(quantized)
+        elif model_name == "wan_2_2":
+            self.model_name = "Wan-AI/Wan2.2-TI2V-5B-Diffusers"
+            self.pipe = self._load_wan_2_2_pipeline()
+
+        # Set default video generation parameters
+        self.fps = 16  # Frames per second
+        self.default_duration = 1  # Default video duration in seconds
+
+        # Record initialization time
+        self.metrics['initialization_time'] = time.time() - init_start_time
+        self.logger.info(f"Model initialization completed in {self.metrics['initialization_time']:.2f} seconds")
+        print(f"✅ Model initialization complete! (Time: {self.metrics['initialization_time']:.2f}s)")
+
+    def _load_wan2_1_pipeline(self, quantized):
         if not quantized:
             # Load model components
             print("📦 Loading text encoder...")
-            self.text_encoder = UMT5EncoderModel.from_pretrained(
+            text_encoder = UMT5EncoderModel.from_pretrained(
                 self.model_name, subfolder="text_encoder", torch_dtype=torch.bfloat16
             ).to(self.device)
             self._log_memory_usage("After loading text encoder")
 
             print("📦 Loading VAE...")
-            self.vae = AutoModel.from_pretrained(
+            vae = AutoModel.from_pretrained(
                 self.model_name, subfolder="vae", torch_dtype=torch.float32
             ).to(self.device)
             self._log_memory_usage("After loading VAE")
 
             print("📦 Loading transformer...")
-            self.transformer = AutoModel.from_pretrained(
+            transformer = AutoModel.from_pretrained(
                 self.model_name, subfolder="transformer", torch_dtype=torch.bfloat16
             ).to(self.device)
             self._log_memory_usage("After loading transformer")
 
             print("⚙️ Initializing pipeline...")
 
-            self.pipe = WanPipeline.from_pretrained(
+            pipe = WanPipeline.from_pretrained(
                 self.model_name,
-                vae=self.vae,
-                transformer=self.transformer,
-                text_encoder=self.text_encoder,
+                vae=vae,
+                transformer=transformer,
+                text_encoder=text_encoder,
                 torch_dtype=self.dtype,
             ).to(self.device)
-
 
             self._log_memory_usage("After initializing pipeline")
         else:
@@ -112,20 +115,29 @@ class Text2Vedio:
                 components_to_quantize=["transformer", "text_encoder"],
             )
 
-            self.pipe = DiffusionPipeline.from_pretrained(
+            pipe = DiffusionPipeline.from_pretrained(
                 self.model_name,
                 torch_dtype=self.dtype,
                 pipeline_quantization_config=pipeline_quant_config,
             ).to(self.device)
+        
+        return pipe
 
-        # Set default video generation parameters
-        self.fps = 16  # Frames per second
-        self.default_duration = 1  # Default video duration in seconds
+    def _load_wan_2_2_pipeline(self):
+        vae = AutoencoderKLWan.from_pretrained(
+            self.model_name, 
+            subfolder="vae", 
+            torch_dtype=self.dtype
+        ).to(self.device)
 
-        # Record initialization time
-        self.metrics['initialization_time'] = time.time() - init_start_time
-        self.logger.info(f"Model initialization completed in {self.metrics['initialization_time']:.2f} seconds")
-        print(f"✅ Model initialization complete! (Time: {self.metrics['initialization_time']:.2f}s)")
+        pipe = WanPipeline.from_pretrained(
+            self.model_name, 
+            vae=vae, 
+            torch_dtype=self.dtype
+        ).to(self.device)
+        
+        return pipe
+
 
     def _log_memory_usage(self, stage):
         """
@@ -223,7 +235,7 @@ class Text2Vedio:
         self.logger.info(f"Stats: {stats}")
         self.logger.info("="*60)
 
-    def text_to_video(self, text, duration=None, fps=None):
+    def text_to_video(self, text, duration=None, fps=None, negative_prompt=None):
         """
         Generate video frames from a given text prompt.
 
@@ -231,6 +243,8 @@ class Text2Vedio:
             text: Text prompt for video generation
             duration: Video duration in seconds (default: use self.default_duration)
             fps: Frames per second (default: use self.fps)
+            negative_prompt: Negative prompt to guide what to avoid in generation
+                           (default: predefined quality/artifact avoidance prompt)
         """
         # Use default values if not specified
         if duration is None:
@@ -264,13 +278,15 @@ class Text2Vedio:
             self.logger.info(f"GPU Utilization before inference: {gpu_util_before}%")
             print(f"   🔋 GPU Utilization: {gpu_util_before}%")
 
-        negative_prompt = """
-        low quality, worst quality, normal quality, jpeg artifacts, blurry, out of focus,
-        duplicate, watermark, text, error, cropped, extra fingers, mutated hands, poorly drawn hands,
-        poorly drawn face, deformed, ugly, bad anatomy, disfigured, tiling, grainy, pixelated,
-        fused fingers, extra limbs, missing limbs, malformed limbs, bad proportions,
-        unrealistic, unnatural lighting, deformed body, long neck, blurry eyes
-        """
+        # Use default negative prompt if none provided
+        if negative_prompt is None:
+            negative_prompt = """
+            low quality, worst quality, normal quality, jpeg artifacts, blurry, out of focus,
+            duplicate, watermark, text, error, cropped, extra fingers, mutated hands, poorly drawn hands,
+            poorly drawn face, deformed, ugly, bad anatomy, disfigured, tiling, grainy, pixelated,
+            fused fingers, extra limbs, missing limbs, malformed limbs, bad proportions,
+            unrealistic, unnatural lighting, deformed body, long neck, blurry eyes
+            """
 
         with torch.no_grad():
             output = self.pipe(
@@ -375,20 +391,28 @@ def main():
                           help="Video duration in seconds (default: 1.0)")
     argparser.add_argument("--fps", type=int, default=16,
                           help="Frames per second (default: 16)")
+    argparser.add_argument("--model_name", type=str, default="wan_2_1",
+                          choices=["wan_2_1", "wan_2_2"],
+                          help="Model to use: 'wan_2_1' (Wan2.1-T2V-1.3B, stable) or 'wan_2_2' (Wan2.2-TI2V-5B, experimental)")
+    argparser.add_argument("--negative_prompt", type=str, default=None,
+                          help="Negative prompt to guide what to avoid in generation (optional)")
     argparser.add_argument("--quantize", action="store_true",
-                          help="Use 4-bit quantization to reduce memory usage")
+                          help="Use 4-bit quantization to reduce memory usage (only supported for wan_2_1)")
     args = argparser.parse_args()
 
     print("🔧 Starting text-to-video generation process...")
-    print(f"   📋 Parameters: Duration={args.duration}s, FPS={args.fps}")
+    print(f"   📋 Parameters: Model={args.model_name}, Duration={args.duration}s, FPS={args.fps}")
     if args.quantize:
         print(f"   🔧 Quantization: ENABLED (4-bit)")
+        if args.model_name == "wan_2_2":
+            print(f"   ⚠️ Warning: Quantization is not fully tested with wan_2_2")
 
-    t2v = Text2Vedio(quantized=args.quantize)
+    t2v = Text2Vedio(model_name=args.model_name, quantized=args.quantize)
     text = t2v.read_text(args.text_file)
 
     # Generate video with specified duration and fps
-    video_frames = t2v.text_to_video(text, duration=args.duration, fps=args.fps)
+    video_frames = t2v.text_to_video(text, duration=args.duration, fps=args.fps,
+                                     negative_prompt=args.negative_prompt)
 
     # Save video with specified fps
     filename = args.text_file.split('/')[-1].split('.')[0]

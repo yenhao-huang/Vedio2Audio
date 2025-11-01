@@ -31,3 +31,389 @@
 2025-10-31 10:55:53,284 - INFO - Video parameters - Duration: 3s, FPS: 16, Frames: 48
 2025-10-31 10:55:53,294 - INFO - [Before inference] GPU Memory - Allocated: 37.57 GB, Reserved: 37.61 GB, Free: 6.86 GB
 2025-10-31 10:55:53,297 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:10:07,410 - INFO - Using GPU device 0: NVIDIA A40
+2025-11-01 04:10:07,410 - INFO - GPU Total Memory: 44.42 GB
+2025-11-01 04:10:07,411 - INFO - GPU Memory Allocated: 0.00 MB
+2025-11-01 04:10:07,411 - INFO - GPU Memory Reserved: 0.00 MB
+2025-11-01 04:17:34,209 - INFO - Using GPU device 0: NVIDIA A40
+2025-11-01 04:17:34,209 - INFO - GPU Total Memory: 44.42 GB
+2025-11-01 04:17:34,209 - INFO - GPU Memory Allocated: 0.00 MB
+2025-11-01 04:17:34,209 - INFO - GPU Memory Reserved: 0.00 MB
+2025-11-01 04:18:25,857 - INFO - [After loading text encoder] GPU Memory - Allocated: 10.58 GB, Reserved: 10.58 GB, Free: 33.84 GB
+2025-11-01 04:18:27,822 - INFO - [After loading VAE] GPU Memory - Allocated: 11.08 GB, Reserved: 11.08 GB, Free: 33.35 GB
+2025-11-01 04:19:00,604 - INFO - [After loading transformer] GPU Memory - Allocated: 13.73 GB, Reserved: 13.96 GB, Free: 30.69 GB
+2025-11-01 04:19:01,611 - INFO - [After initializing pipeline] GPU Memory - Allocated: 13.73 GB, Reserved: 13.96 GB, Free: 30.69 GB
+2025-11-01 04:19:01,611 - INFO - Model initialization completed in 87.44 seconds
+2025-11-01 04:19:01,611 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 04:19:01,611 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:19:01,612 - INFO - [Before inference] GPU Memory - Allocated: 13.73 GB, Reserved: 13.96 GB, Free: 30.69 GB
+2025-11-01 04:19:01,612 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:25:12,777 - INFO - CUDA cache cleared after inference
+2025-11-01 04:25:12,778 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:25:12,781 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:25:12,781 - INFO - Video generation completed in 371.17 seconds
+2025-11-01 04:25:12,781 - INFO - Saving video with FPS: 16
+2025-11-01 04:25:12,781 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:25:12,781 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:25:12,781 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:25:14,432 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 04:25:14,432 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:25:14,433 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:25:14,433 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:31:21,838 - INFO - CUDA cache cleared after inference
+2025-11-01 04:31:21,839 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:31:21,842 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:31:21,842 - INFO - Video generation completed in 367.41 seconds
+2025-11-01 04:31:21,843 - INFO - Saving video with FPS: 16
+2025-11-01 04:31:21,843 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:31:21,843 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:31:21,843 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:31:22,436 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 04:31:22,436 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:31:22,436 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:31:22,437 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:37:30,058 - INFO - CUDA cache cleared after inference
+2025-11-01 04:37:30,058 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:37:30,062 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:37:30,062 - INFO - Video generation completed in 367.62 seconds
+2025-11-01 04:37:30,062 - INFO - Saving video with FPS: 16
+2025-11-01 04:37:30,062 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:37:30,062 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:37:30,063 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:37:30,845 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 04:37:30,845 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:37:30,845 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:37:30,846 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:43:38,559 - INFO - CUDA cache cleared after inference
+2025-11-01 04:43:38,560 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:43:38,564 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:43:38,564 - INFO - Video generation completed in 367.71 seconds
+2025-11-01 04:43:38,565 - INFO - Saving video with FPS: 16
+2025-11-01 04:43:38,565 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:43:38,565 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:43:38,565 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:43:39,064 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 04:43:39,065 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:43:39,065 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:43:39,065 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:49:46,728 - INFO - CUDA cache cleared after inference
+2025-11-01 04:49:46,728 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:49:46,731 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:49:46,731 - INFO - Video generation completed in 367.66 seconds
+2025-11-01 04:49:46,731 - INFO - Saving video with FPS: 16
+2025-11-01 04:49:46,731 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:49:46,731 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:49:46,731 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:49:47,261 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 04:49:47,261 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:49:47,262 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 04:49:47,262 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:55:54,971 - INFO - CUDA cache cleared after inference
+2025-11-01 04:55:54,972 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:55:54,977 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 04:55:54,977 - INFO - Video generation completed in 367.71 seconds
+2025-11-01 04:55:54,977 - INFO - Saving video with FPS: 16
+2025-11-01 04:55:54,977 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 04:55:54,977 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 04:55:54,977 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 04:55:55,513 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 04:55:55,513 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 04:55:55,514 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.04 GB, Free: 30.66 GB
+2025-11-01 04:55:55,514 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:02:03,538 - INFO - CUDA cache cleared after inference
+2025-11-01 05:02:03,539 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:02:03,545 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:02:03,546 - INFO - Video generation completed in 368.02 seconds
+2025-11-01 05:02:03,546 - INFO - Saving video with FPS: 16
+2025-11-01 05:02:03,546 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 05:02:03,546 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 05:02:03,546 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 05:02:04,166 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 05:02:04,166 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 05:02:04,167 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:02:04,167 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:08:12,043 - INFO - CUDA cache cleared after inference
+2025-11-01 05:08:12,043 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:08:12,046 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:08:12,046 - INFO - Video generation completed in 367.88 seconds
+2025-11-01 05:08:12,047 - INFO - Saving video with FPS: 16
+2025-11-01 05:08:12,047 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 05:08:12,047 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 05:08:12,047 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 05:08:12,559 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 05:08:12,559 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 05:08:12,559 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:08:12,559 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:14:20,296 - INFO - CUDA cache cleared after inference
+2025-11-01 05:14:20,297 - INFO - [After inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:14:20,299 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:14:20,299 - INFO - Video generation completed in 367.74 seconds
+2025-11-01 05:14:20,299 - INFO - Saving video with FPS: 16
+2025-11-01 05:14:20,299 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 05:14:20,299 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 05:14:20,299 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 05:14:20,856 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 05:14:20,857 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 05:14:20,857 - INFO - [Before inference] GPU Memory - Allocated: 13.76 GB, Reserved: 14.07 GB, Free: 30.66 GB
+2025-11-01 05:14:20,857 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:32:45,617 - INFO - CUDA cache cleared after inference
+2025-11-01 05:32:45,618 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.04 GB, Free: 30.64 GB
+2025-11-01 05:32:45,622 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:32:45,622 - INFO - Video generation completed in 1104.76 seconds
+2025-11-01 05:32:45,622 - INFO - Saving video with FPS: 16
+2025-11-01 05:32:45,622 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 05:32:45,623 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 05:32:45,623 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 05:32:46,979 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 05:32:46,979 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 05:32:46,980 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.04 GB, Free: 30.64 GB
+2025-11-01 05:32:46,983 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:51:10,022 - INFO - CUDA cache cleared after inference
+2025-11-01 05:51:10,023 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 05:51:10,026 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 05:51:10,027 - INFO - Video generation completed in 1103.04 seconds
+2025-11-01 05:51:10,027 - INFO - Saving video with FPS: 16
+2025-11-01 05:51:10,027 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 05:51:10,027 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 05:51:10,027 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 05:51:11,448 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 05:51:11,448 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 05:51:11,448 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 05:51:11,451 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:09:34,827 - INFO - CUDA cache cleared after inference
+2025-11-01 06:09:34,828 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 06:09:34,831 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:09:34,831 - INFO - Video generation completed in 1103.38 seconds
+2025-11-01 06:09:34,832 - INFO - Saving video with FPS: 16
+2025-11-01 06:09:34,832 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 06:09:34,832 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 06:09:34,832 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 06:09:36,095 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 06:09:36,095 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 06:09:36,095 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 06:09:36,098 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:28:00,018 - INFO - CUDA cache cleared after inference
+2025-11-01 06:28:00,019 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 06:28:00,022 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:28:00,023 - INFO - Video generation completed in 1103.92 seconds
+2025-11-01 06:28:00,023 - INFO - Saving video with FPS: 16
+2025-11-01 06:28:00,023 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 06:28:00,023 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 06:28:00,023 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 06:28:01,148 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 06:28:01,148 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 06:28:01,149 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.07 GB, Free: 30.64 GB
+2025-11-01 06:28:01,156 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:46:24,640 - INFO - CUDA cache cleared after inference
+2025-11-01 06:46:24,641 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 06:46:24,645 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 06:46:24,645 - INFO - Video generation completed in 1103.49 seconds
+2025-11-01 06:46:24,645 - INFO - Saving video with FPS: 16
+2025-11-01 06:46:24,645 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 06:46:24,646 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 06:46:24,646 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 06:46:25,860 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 06:46:25,860 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 06:46:25,861 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 06:46:25,863 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:04:49,981 - INFO - CUDA cache cleared after inference
+2025-11-01 07:04:49,983 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.10 GB, Free: 30.64 GB
+2025-11-01 07:04:49,987 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:04:49,987 - INFO - Video generation completed in 1104.12 seconds
+2025-11-01 07:04:49,987 - INFO - Saving video with FPS: 16
+2025-11-01 07:04:49,987 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 07:04:49,987 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 07:04:49,987 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 07:04:50,993 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 07:04:50,993 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 07:04:50,993 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.10 GB, Free: 30.64 GB
+2025-11-01 07:04:50,996 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:23:14,662 - INFO - CUDA cache cleared after inference
+2025-11-01 07:23:14,663 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 07:23:14,666 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:23:14,666 - INFO - Video generation completed in 1103.67 seconds
+2025-11-01 07:23:14,666 - INFO - Saving video with FPS: 16
+2025-11-01 07:23:14,666 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 07:23:14,666 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 07:23:14,666 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 07:23:15,551 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 07:23:15,551 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 07:23:15,551 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 07:23:15,552 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:41:39,742 - INFO - CUDA cache cleared after inference
+2025-11-01 07:41:39,743 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 07:41:39,747 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 07:41:39,747 - INFO - Video generation completed in 1104.19 seconds
+2025-11-01 07:41:39,747 - INFO - Saving video with FPS: 16
+2025-11-01 07:41:39,747 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 07:41:39,747 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 07:41:39,747 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 07:41:40,673 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 07:41:40,673 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 07:41:40,673 - INFO - [Before inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 07:41:40,673 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 08:00:05,586 - INFO - CUDA cache cleared after inference
+2025-11-01 08:00:05,587 - INFO - [After inference] GPU Memory - Allocated: 13.78 GB, Reserved: 14.13 GB, Free: 30.64 GB
+2025-11-01 08:00:05,592 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 08:00:05,592 - INFO - Video generation completed in 1104.91 seconds
+2025-11-01 08:00:05,592 - INFO - Saving video with FPS: 16
+2025-11-01 08:00:05,592 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 08:00:05,592 - INFO - Output shape: (1, 161, 480, 832, 3), dtype: float32
+2025-11-01 08:00:05,592 - INFO - Extracted video_frames shape: (161, 480, 832, 3)
+2025-11-01 09:09:41,379 - INFO - Using GPU device 0: NVIDIA A40
+2025-11-01 09:09:41,379 - INFO - GPU Total Memory: 44.42 GB
+2025-11-01 09:09:41,379 - INFO - GPU Memory Allocated: 0.00 MB
+2025-11-01 09:09:41,379 - INFO - GPU Memory Reserved: 0.00 MB
+2025-11-01 10:52:12,791 - INFO - [After loading text encoder] GPU Memory - Allocated: 10.58 GB, Reserved: 10.58 GB, Free: 33.84 GB
+2025-11-01 10:52:15,120 - INFO - [After loading VAE] GPU Memory - Allocated: 11.08 GB, Reserved: 11.08 GB, Free: 33.35 GB
+2025-11-01 10:52:56,012 - INFO - [After loading transformer] GPU Memory - Allocated: 13.73 GB, Reserved: 13.96 GB, Free: 30.69 GB
+2025-11-01 10:52:57,373 - INFO - [After initializing pipeline] GPU Memory - Allocated: 13.73 GB, Reserved: 13.96 GB, Free: 30.69 GB
+2025-11-01 10:52:57,373 - INFO - Model initialization completed in 116.72 seconds
+2025-11-01 10:53:14,128 - INFO - Model initialization completed in 16.27 seconds
+2025-11-01 11:04:59,533 - INFO - Model initialization completed in 345.08 seconds
+2025-11-01 11:09:52,192 - INFO - Model initialization completed in 118.91 seconds
+2025-11-01 11:09:52,193 - INFO - Starting video generation for prompt: 韩兄,你难道击杀了那头薛灵?荆族女子深吸了一口气,缓缓问道,归星男子也目光阴沉望着韩丽,有些惊疑不定。怎么,在下击杀这东西,让二位倒有这么难以置信吗?当然不是,只是韩兄神通未免太大,这么快就击杀此物,...
+2025-11-01 11:09:52,193 - INFO - Video parameters - Duration: 1s, FPS: 16, Frames: 16
+2025-11-01 11:09:52,194 - INFO - [Before inference] GPU Memory - Allocated: 21.24 GB, Reserved: 21.26 GB, Free: 23.18 GB
+2025-11-01 11:09:52,197 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:10:35,731 - INFO - CUDA cache cleared after inference
+2025-11-01 11:10:35,731 - INFO - [After inference] GPU Memory - Allocated: 21.26 GB, Reserved: 21.28 GB, Free: 23.17 GB
+2025-11-01 11:10:35,735 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:10:35,736 - INFO - Video generation completed in 43.54 seconds
+2025-11-01 11:10:35,736 - INFO - Saving video with FPS: 16
+2025-11-01 11:10:35,736 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:10:35,736 - INFO - Output shape: (1, 17, 480, 832, 3), dtype: float32
+2025-11-01 11:10:35,736 - INFO - Extracted video_frames shape: (17, 480, 832, 3)
+2025-11-01 11:10:37,502 - INFO - ============================================================
+2025-11-01 11:10:37,503 - INFO - MODEL USAGE STATISTICS
+2025-11-01 11:10:37,503 - INFO - Stats: {'initialization_time': 118.90582990646362, 'total_videos_generated': 1, 'peak_memory_usage_gb': 21.256930351257324, 'average_inference_time': np.float64(43.536516427993774), 'total_inference_time': 43.536516427993774, 'current_memory_allocated_gb': 21.256930351257324, 'current_memory_reserved_gb': 21.27734375, 'device_name': 'NVIDIA A40'}
+2025-11-01 11:10:37,503 - INFO - ============================================================
+2025-11-01 11:30:51,515 - INFO - Model initialization completed in 133.27 seconds
+2025-11-01 11:30:51,516 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 11:30:51,516 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:30:51,518 - INFO - [Before inference] GPU Memory - Allocated: 21.24 GB, Reserved: 21.26 GB, Free: 23.18 GB
+2025-11-01 11:30:51,521 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:33:43,461 - INFO - CUDA cache cleared after inference
+2025-11-01 11:33:43,462 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:33:43,466 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:33:43,466 - INFO - Video generation completed in 171.94 seconds
+2025-11-01 11:33:43,467 - INFO - Saving video with FPS: 16
+2025-11-01 11:33:43,467 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:33:43,467 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:33:43,467 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:33:45,094 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 11:33:45,094 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:33:45,347 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:33:45,348 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:36:32,866 - INFO - CUDA cache cleared after inference
+2025-11-01 11:36:32,867 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:36:32,872 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:36:32,872 - INFO - Video generation completed in 167.52 seconds
+2025-11-01 11:36:32,872 - INFO - Saving video with FPS: 16
+2025-11-01 11:36:32,872 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:36:32,872 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:36:32,872 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:36:33,467 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 11:36:33,467 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:36:33,467 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:36:33,468 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:39:21,167 - INFO - CUDA cache cleared after inference
+2025-11-01 11:39:21,168 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:39:21,177 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:39:21,177 - INFO - Video generation completed in 167.70 seconds
+2025-11-01 11:39:21,177 - INFO - Saving video with FPS: 16
+2025-11-01 11:39:21,177 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:39:21,177 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:39:21,178 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:39:21,728 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 11:39:21,728 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:39:21,728 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:39:21,729 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:42:09,456 - INFO - CUDA cache cleared after inference
+2025-11-01 11:42:09,456 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:42:09,459 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:42:09,459 - INFO - Video generation completed in 167.73 seconds
+2025-11-01 11:42:09,459 - INFO - Saving video with FPS: 16
+2025-11-01 11:42:09,459 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:42:09,459 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:42:09,460 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:42:09,928 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 11:42:09,928 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:42:09,928 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:42:09,929 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:44:57,446 - INFO - CUDA cache cleared after inference
+2025-11-01 11:44:57,446 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:44:57,457 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:44:57,457 - INFO - Video generation completed in 167.52 seconds
+2025-11-01 11:44:57,457 - INFO - Saving video with FPS: 16
+2025-11-01 11:44:57,457 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:44:57,457 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:44:57,457 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:44:57,909 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 11:44:57,909 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:44:57,909 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:44:57,910 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:47:45,471 - INFO - CUDA cache cleared after inference
+2025-11-01 11:47:45,471 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:47:45,473 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:47:45,473 - INFO - Video generation completed in 167.56 seconds
+2025-11-01 11:47:45,473 - INFO - Saving video with FPS: 16
+2025-11-01 11:47:45,473 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:47:45,473 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:47:45,473 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:47:46,002 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 11:47:46,002 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:47:46,002 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:47:46,002 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:50:33,565 - INFO - CUDA cache cleared after inference
+2025-11-01 11:50:33,566 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:50:33,568 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:50:33,568 - INFO - Video generation completed in 167.56 seconds
+2025-11-01 11:50:33,568 - INFO - Saving video with FPS: 16
+2025-11-01 11:50:33,568 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:50:33,569 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:50:33,569 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:50:34,075 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 11:50:34,075 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:50:34,075 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:50:34,075 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:53:21,551 - INFO - CUDA cache cleared after inference
+2025-11-01 11:53:21,552 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:53:21,554 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:53:21,554 - INFO - Video generation completed in 167.48 seconds
+2025-11-01 11:53:21,554 - INFO - Saving video with FPS: 16
+2025-11-01 11:53:21,554 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:53:21,554 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:53:21,554 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:53:21,990 - INFO - Starting video generation for prompt: An astronaut in a white spacesuit floating outside a futuristic space station, Earth visible in the ...
+2025-11-01 11:53:21,990 - INFO - Video parameters - Duration: 5s, FPS: 16, Frames: 80
+2025-11-01 11:53:21,990 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.37 GB, Free: 23.15 GB
+2025-11-01 11:53:21,990 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:56:09,456 - INFO - CUDA cache cleared after inference
+2025-11-01 11:56:09,457 - INFO - [After inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:56:09,459 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 11:56:09,459 - INFO - Video generation completed in 167.47 seconds
+2025-11-01 11:56:09,459 - INFO - Saving video with FPS: 16
+2025-11-01 11:56:09,459 - INFO - Output type: <class 'numpy.ndarray'>
+2025-11-01 11:56:09,459 - INFO - Output shape: (1, 81, 480, 832, 3), dtype: float32
+2025-11-01 11:56:09,459 - INFO - Extracted video_frames shape: (81, 480, 832, 3)
+2025-11-01 11:56:09,896 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 11:56:09,896 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 11:56:09,897 - INFO - [Before inference] GPU Memory - Allocated: 21.27 GB, Reserved: 21.34 GB, Free: 23.15 GB
+2025-11-01 11:56:09,897 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 12:01:45,413 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 12:01:45,413 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 12:01:45,415 - INFO - [Before inference] GPU Memory - Allocated: 22.61 GB, Reserved: 36.06 GB, Free: 21.81 GB
+2025-11-01 12:01:45,419 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 12:07:21,187 - INFO - Starting video generation for prompt: A sleek red sports car driving fast through a neon-lit city street at night, wet pavement reflecting...
+2025-11-01 12:07:21,187 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 12:07:21,187 - INFO - [Before inference] GPU Memory - Allocated: 22.61 GB, Reserved: 36.06 GB, Free: 21.81 GB
+2025-11-01 12:07:21,190 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 12:12:55,759 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 12:12:55,760 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 12:12:55,760 - INFO - [Before inference] GPU Memory - Allocated: 22.62 GB, Reserved: 36.03 GB, Free: 21.81 GB
+2025-11-01 12:12:55,762 - WARNING - pynvml not available, GPU utilization monitoring disabled
+2025-11-01 12:18:30,126 - INFO - Starting video generation for prompt: A vibrant blue bird flying gracefully through a misty forest at dawn, sunlight breaking through the ...
+2025-11-01 12:18:30,126 - INFO - Video parameters - Duration: 10s, FPS: 16, Frames: 160
+2025-11-01 12:18:30,126 - INFO - [Before inference] GPU Memory - Allocated: 22.61 GB, Reserved: 36.03 GB, Free: 21.81 GB
+2025-11-01 12:18:30,130 - WARNING - pynvml not available, GPU utilization monitoring disabled
