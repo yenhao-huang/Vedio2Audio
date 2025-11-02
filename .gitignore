@@ -2,3 +2,9 @@ data/*
 !data/.gitkeep
 results/*
 !results/.gitkeep
+experiments/results/*
+logs
+plans
+tests/testcases/*
+__pycache__
+.claude
