@@ -6,8 +6,8 @@ Audio2Video 是一個將音頻輸入轉換成視頻輸出的 AI 應用程式，�
 
 **核心功能：**
 1. **音頻轉文字轉錄**：採用 OpenAI Whisper Large v3 模型，將語音轉錄成文字
-2. **文字生成視頻**：使用 Wan2.1-T2V-1.3B 擴散模型，根據文字生成 AI 影片
-3. **Web 介面**：基於 Streamlit 的互動式前端，支援錄音、上傳、即時預覽
+2. **文字生成視頻**：支援 WAN 2.1 (1.3B) 和 WAN 2.2 (5B) 擴散模型，根據文字生成 AI 影片
+3. **Web 介面**：基於 Streamlit 的互動式前端，支援錄音、上傳、即時預覽、模型切換
 4. **實驗系統**：系統性測試與性能評估工具，包含自動化測試腳本與報告生成
 
 <p align="center">
@@ -55,13 +55,17 @@ streamlit run app.py
 
 3. **生成影片**
    - 點擊「🎬 Generate Video」
-   - 可展開「⚙️ Video Parameters」調整參數
+   - 可展開「⚙️ Video Parameters」調整參數：
+     - **模型選擇**：WAN 2.1 或 WAN 2.2
+     - **時長**：1.0 - 10.0 秒
+     - **FPS**：8 - 30 fps
    - 等待 AI 生成影片
    - 預覽並下載影片
 
 #### Web 介面特色
 
 - ✅ 即時錄音功能
+- ✅ 雙模型支援（WAN 2.1 / 2.2）
 - ✅ 影片預覽播放
 - ✅ 一鍵下載結果
 
@@ -86,30 +90,36 @@ python utils/audio2text.py --audio_file path/to/audio.mp3 --output_dir results/
 
 #### 步驟 2：文字生成視頻
 
-使用 Wan2.1-T2V-1.3B 擴散模型，根據文字提示生成視頻。
+使用 WAN T2V 擴散模型，根據文字提示生成視頻。支援 WAN 2.1 (1.3B) 和 WAN 2.2 (5B) 兩種模型。
 
 ```bash
-python utils/text2vedio.py --text_file results/1000_transcription.json --output_dir results/ --duration 3.0 --fps 16
+python utils/text2vedio.py --text_file results/1000_transcription.json --output_dir results/ --model_name wan_2_1 --duration 3.0 --fps 16
 ```
 
 **參數說明：**
 
 - `--text_file`：輸入文字檔案路徑（支援 JSON 或純文字格式，預設：`results/1000_transcription.json`）
 - `--output_dir`：生成視頻的輸出目錄（預設：`results/`）
+- `--model_name`：模型選擇（預設：`wan_2_1`）
+  - `wan_2_1`：WAN 2.1 (1.3B) - 較小、較快、穩定，支援量化
+  - `wan_2_2`：WAN 2.2 (5B) - 較大、可能質量更好、實驗性
 - `--duration`：視頻時長（秒），預設：`3.0` 秒
 - `--fps`：每秒幀數（frames per second），預設：`16`
 
 **範例：**
 
 ```bash
-# 生成 3 秒視頻（16 fps = 48 frames）
-python utils/text2vedio.py --text_file results/1000_transcription.json --duration 3.0
+# 使用 WAN 2.1 生成 3 秒視頻（16 fps = 48 frames）
+python utils/text2vedio.py --text_file results/1000_transcription.json --model_name wan_2_1 --duration 3.0
 
-# 生成 5 秒視頻（16 fps = 80 frames）
-python utils/text2vedio.py --text_file results/1000_transcription.json --duration 5.0
+# 使用 WAN 2.2 生成 5 秒視頻（16 fps = 80 frames）
+python utils/text2vedio.py --text_file results/1000_transcription.json --model_name wan_2_2 --duration 5.0
 
 # 使用自訂 fps
 python utils/text2vedio.py --text_file results/1000_transcription.json --duration 3.0 --fps 24
+
+# WAN 2.1 + 量化（節省記憶體）
+python utils/text2vedio.py --text_file results/1000_transcription.json --model_name wan_2_1 --quantized
 ```
 
 ## 專案結構
@@ -170,6 +180,7 @@ audio2vedio/
 - 轉錄控制按鈕
 
 #### `video_generator.py` - 影片生成元件
+- 模型選擇（WAN 2.1 / 2.2）
 - 影片參數控制（時長、FPS）
 - 可摺疊的參數設定面板
 - 影片預覽播放器
@@ -191,8 +202,11 @@ pipeline = Audio2VideoPipeline(config)
 # 轉錄音頻
 transcription = pipeline.transcribe_audio(audio_path)
 
-# 生成影片
+# 生成影片（使用預設模型）
 video_path, stats = pipeline.generate_video(text, duration, fps)
+
+# 生成影片（指定模型）
+video_path, stats = pipeline.generate_video(text, duration, fps, model_key='wan_2_2')
 
 # 完整流程
 results = pipeline.run_full_pipeline(audio_path)
@@ -206,11 +220,13 @@ results = pipeline.run_full_pipeline(audio_path)
 - 自動 GPU/CPU 偵測
 - Float16 精度優化
 
-#### `text2vedio.py` - Wan2.1 影片生成
-- 模型：Wan-AI/Wan2.1-T2V-1.3B
-- 支援 4-bit 量化（節省 50% VRAM）
+#### `text2vedio.py` - WAN T2V 影片生成
+- 模型：
+  - WAN 2.1: Wan-AI/Wan2.1-T2V-1.3B（預設）
+  - WAN 2.2: Wan-AI/Wan2.2-TI2V-5B
+- 支援 4-bit 量化（僅 WAN 2.1，節省 50% VRAM）
 - 效能監控（記憶體、GPU 使用率、生成時間）
-- 可調參數：duration、fps
+- 可調參數：model_name、duration、fps、quantized
 
 ### 5. 配置系統 (`config/settings.yaml`)
 
@@ -270,42 +286,15 @@ python experiments/test_video_generation.py
 ```yaml
 # 影片生成預設值
 video:
+  model_key: "wan_2_1"    # wan_2_1 或 wan_2_2
   default_duration: 3.0
   default_fps: 16
-  quantization: false  # 啟用 4-bit 量化
+  quantization: false     # 啟用 4-bit 量化（僅 wan_2_1）
 
 # 效能設定
 performance:
   cache_models: true
   clear_cuda_cache: true
-```
-
-## 效能優化建議
-
-### 提升速度
-- ✅ 使用 GPU（必要）
-- ✅ 降低 FPS（16 為最佳平衡）
-- ✅ 縮短影片時長
-
-### 節省記憶體
-- ✅ 在 `config/settings.yaml` 啟用 `quantization: true`
-- ✅ 降低 FPS 或時長
-- ✅ 關閉其他 GPU 程式
-
-## 故障排除
-
-### CUDA out of memory
-```bash
-# 解決方案 1: 啟用量化
-# 編輯 config/settings.yaml，設定 quantization: true
-
-# 解決方案 2: 清理 GPU 快取
-python -c "import torch; torch.cuda.empty_cache()"
-```
-
-### 模組未找到
-```bash
-pip install -r requirements.txt --upgrade
 ```
 
 ## 技術規格
@@ -314,14 +303,7 @@ pip install -r requirements.txt --upgrade
 |------|------|------|
 | 前端框架 | Streamlit | Web UI |
 | 語音轉錄 | Whisper Large v3 | 音頻 → 文字 |
-| 影片生成 | Wan2.1-T2V-1.3B | 文字 → 影片 |
+| 影片生成 | WAN 2.1 (1.3B) / WAN 2.2 (5B) | 文字 → 影片 |
 | 深度學習 | PyTorch + CUDA | GPU 加速 |
 | 錄音元件 | audio-recorder-streamlit | 瀏覽器錄音 |
 | 視覺化 | Plotly | 效能圖表 |
-
-## 授權
-
-本專案整合以下開源技術：
-- [Streamlit](https://streamlit.io/) - Apache 2.0
-- [OpenAI Whisper](https://github.com/openai/whisper) - MIT
-- [Wan-AI Models](https://huggingface.co/Wan-AI) - Model License
