@@ -10,6 +10,10 @@ Audio2Video 是一個將音頻輸入轉換成視頻輸出的 AI 應用程式，�
 3. **Web 介面**：基於 Streamlit 的互動式前端，支援錄音、上傳、即時預覽
 4. **實驗系統**：系統性測試與性能評估工具，包含自動化測試腳本與報告生成
 
+<p align="center">
+  <img src="./images/UI.png" alt="UI 預覽" width="600">
+</p>
+
 ## 安裝
 
 ### 系統需求

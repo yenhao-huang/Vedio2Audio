@@ -280,6 +280,7 @@ class Text2Vedio:
 
         # Use default negative prompt if none provided
         if negative_prompt is None:
+            '''
             negative_prompt = """
             low quality, worst quality, normal quality, jpeg artifacts, blurry, out of focus,
             duplicate, watermark, text, error, cropped, extra fingers, mutated hands, poorly drawn hands,
@@ -287,11 +288,15 @@ class Text2Vedio:
             fused fingers, extra limbs, missing limbs, malformed limbs, bad proportions,
             unrealistic, unnatural lighting, deformed body, long neck, blurry eyes
             """
+            '''
+            negative_prompt = "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走"
 
         with torch.no_grad():
             output = self.pipe(
                 prompt=text,
                 negative_prompt=negative_prompt,
+                height=704,
+                width=1280,
                 num_frames=num_frames,
                 guidance_scale=5.0,
             ).frames

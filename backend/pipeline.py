@@ -51,17 +51,43 @@ class Audio2VideoPipeline:
             self.logger.info("ASR model loaded successfully")
         return self._asr_model
 
+    def get_t2v_model(self, model_key: Optional[str] = None) -> Text2Vedio:
+        """
+        Get or load Text-to-Video model with caching
+
+        Args:
+            model_key: Optional model key to override config default
+
+        Returns:
+            Text2Vedio model instance
+        """
+        # Use provided model_key or fall back to config
+        if model_key is None:
+            model_key = self.config['video'].get('model_key', 'wan_2_1')
+
+        quantize = self.config['video'].get('quantization', False)
+
+        # Check if we need to reload the model (different model selected)
+        if self._t2v_model is not None:
+            current_model = getattr(self._t2v_model, 'model_name', None)
+            if current_model != model_key:
+                self.logger.info(f"Switching from {current_model} to {model_key}")
+                self._t2v_model = None  # Clear old model
+
+        # Load model if not cached
+        if self._t2v_model is None:
+            self.logger.info(f"Loading Text2Video model: {model_key}")
+            self.logger.info(f"Quantization: {quantize}")
+            self._t2v_model = Text2Vedio(model_name=model_key, quantized=quantize)
+            self._t2v_model.model_name = model_key  # Store for comparison
+            self.logger.info("Text2Video model loaded successfully")
+
+        return self._t2v_model
+
     @property
     def t2v_model(self) -> Text2Vedio:
-        """Lazy-load Text-to-Video model with caching"""
-        if self._t2v_model is None:
-            self.logger.info("Loading Text2Video model...")
-            quantize = self.config['video'].get('quantization', False)
-            model_key = self.config['video'].get('model_key', 'wan_2_1')
-            self.logger.info(f"Using model: {model_key}, quantization: {quantize}")
-            self._t2v_model = Text2Vedio(model_name=model_key, quantized=quantize)
-            self.logger.info("Text2Video model loaded successfully")
-        return self._t2v_model
+        """Lazy-load Text-to-Video model with caching (backward compatibility)"""
+        return self.get_t2v_model()
 
     def transcribe_audio(
         self,
@@ -108,6 +134,7 @@ class Audio2VideoPipeline:
         text: str,
         duration: float = 3.0,
         fps: int = 16,
+        model_key: Optional[str] = None,
         output_path: Optional[str] = None,
         progress_callback: Optional[callable] = None
     ) -> Tuple[str, Dict]:
@@ -118,6 +145,7 @@ class Audio2VideoPipeline:
             text: Text prompt for video generation
             duration: Video duration in seconds
             fps: Frames per second
+            model_key: Optional model key (wan_2_1 or wan_2_2)
             output_path: Optional custom output path
             progress_callback: Optional callback for progress updates
 
@@ -126,10 +154,11 @@ class Audio2VideoPipeline:
         """
         try:
             if progress_callback:
-                progress_callback("Loading Text2Video model...", 0.1)
+                model_name = model_key or self.config['video'].get('model_key', 'wan_2_1')
+                progress_callback(f"Loading Text2Video model ({model_name})...", 0.1)
 
-            # Load model
-            t2v = self.t2v_model
+            # Load model with specified model_key
+            t2v = self.get_t2v_model(model_key)
 
             if progress_callback:
                 progress_callback("Generating video frames...", 0.3)

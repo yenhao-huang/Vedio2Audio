@@ -163,7 +163,7 @@ def main():
                 st.session_state.transcription_data['transcription']['text']
 
             # Generation controls with parameters
-            generate, duration, fps = render_video_generation_controls(config)
+            generate, duration, fps, model_key = render_video_generation_controls(config)
 
             if generate:
                 with st.spinner("🎬 Generating video..."):
@@ -177,11 +177,12 @@ def main():
                         def update_progress(msg, progress):
                             progress_placeholder.progress(progress, text=msg)
 
-                        # Generate video
+                        # Generate video with selected model
                         video_path, stats = pipeline.generate_video(
                             text_for_video,
                             duration=duration,
                             fps=fps,
+                            model_key=model_key,
                             progress_callback=update_progress
                         )
 
@@ -210,7 +211,7 @@ def main():
     st.markdown("---")
     st.markdown(
         "<div style='text-align: center; color: #666;'>"
-        "Built with Streamlit | Powered by Whisper & Wan2.1-T2V"
+        "Built with Streamlit | Powered by Whisper & WAN T2V (2.1 / 2.2)"
         "</div>",
         unsafe_allow_html=True
     )

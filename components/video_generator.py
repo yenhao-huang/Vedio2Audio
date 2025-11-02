@@ -10,7 +10,7 @@ from typing import Dict, Optional, Tuple
 from pathlib import Path
 
 
-def render_video_generation_controls(config: Dict) -> Tuple[bool, float, int]:
+def render_video_generation_controls(config: Dict) -> Tuple[bool, float, int, str]:
     """
     Render video generation control button with parameters in expander
 
@@ -18,7 +18,7 @@ def render_video_generation_controls(config: Dict) -> Tuple[bool, float, int]:
         config: Configuration dictionary
 
     Returns:
-        Tuple of (generate_clicked, duration, fps)
+        Tuple of (generate_clicked, duration, fps, model_key)
     """
     video_config = config['video']
 
@@ -42,6 +42,23 @@ def render_video_generation_controls(config: Dict) -> Tuple[bool, float, int]:
 
     # Video parameters in expander (dropdown)
     with st.expander("⚙️ Video Parameters", expanded=False):
+        # Model selection
+        st.markdown("### 🤖 Model Selection")
+        model_key = st.radio(
+            "Select Model",
+            options=["wan_2_1", "wan_2_2"],
+            format_func=lambda x: {
+                "wan_2_1": "WAN 2.1 (1.3B - Stable, Supports Quantization)",
+                "wan_2_2": "WAN 2.2 (5B - Larger, Experimental)"
+            }[x],
+            index=0 if video_config.get('model_key', 'wan_2_1') == 'wan_2_1' else 1,
+            help="WAN 2.1: Smaller, faster, stable\nWAN 2.2: Larger, potentially better quality",
+            key="model_selection"
+        )
+
+        st.markdown("---")
+        st.markdown("### 📐 Video Settings")
+
         col1, col2 = st.columns(2)
 
         with col1:
@@ -64,7 +81,7 @@ def render_video_generation_controls(config: Dict) -> Tuple[bool, float, int]:
                 help="Higher FPS = smoother video (but longer generation time)"
             )
 
-    return generate, duration, fps
+    return generate, duration, fps, model_key
 
 
 def display_generation_progress(status: str, progress: float):
