@@ -11,7 +11,7 @@ Audio2Video 是一個將音頻輸入轉換成視頻輸出的 AI 應用程式，�
 4. **實驗系統**：系統性測試與性能評估工具，包含自動化測試腳本與報告生成
 
 <p align="center">
-  <img src="./images/UI.png" alt="UI 預覽" width="600">
+  <img src="./images/UI.png" alt="UI 預覽" width="100%">
 </p>
 
 ## 安裝
